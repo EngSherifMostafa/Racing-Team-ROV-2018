@@ -6,10 +6,10 @@ int motorSpeed1=11;
 int motor2=12;
 int motorSpeed2=10; 
 
-int motor3=8;
-int motorSpeed3=9;
-int motor4=7;
-int motorSpeed4=6;
+int motor3 = 8;
+int motorSpeed3 = 9;
+int motor4 = 7;
+int motorSpeed4 = 6;
 
 int motor5=4;
 int motorSpeed5=5;
@@ -79,6 +79,7 @@ void loop() {
  else if(text=='s'){
   i =i+50;
   if (lastCommand != text) i=50;
+  
   analogWrite(motorSpeed1, 0);
   analogWrite(motorSpeed2, 0);
   analogWrite(motorSpeed3, i);
