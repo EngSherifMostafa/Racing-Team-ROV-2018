@@ -1,4 +1,7 @@
-byte i=0;
+#define maxSpeed 120
+#define step 10 
+byte speed =0;
+
 
 byte motor1 = 22;
 byte motorSpeed1 = 2;
@@ -78,40 +81,40 @@ void loop() {
   
   //the motor is forward  
   if(text=='w'){
-  i =i+50;
-  if (lastCommand != text) i=50;
-  analogWrite(motorSpeed1, i);
-  analogWrite(motorSpeed2, i);
+  speed =speed+ step;
+  if (lastCommand != text) speed = step ;
+  analogWrite(motorSpeed1, speed);
+  analogWrite(motorSpeed2, speed);
   // off the backward motors
   analogWrite(motorSpeed3, 0);
   analogWrite(motorSpeed4, 0);
   
-  if(i>200){i=200;}
+  if(speed>maxSpeed){speed=maxSpeed;}
   
   digitalWrite(motor1,HIGH);   
   digitalWrite(motor2,HIGH);
      
-  Serial.println(i);
+  Serial.println(speed);
   lastCommand='w';
   }
 
 
  //the motor is backward 
  else if(text=='s'){
-  i =i+50;
-  if (lastCommand != text) i=50;
+  speed =speed+step;
+  if (lastCommand != text) speed = step;
   
   analogWrite(motorSpeed1, 0);
   analogWrite(motorSpeed2, 0);
   analogWrite(motorSpeed3, i);
   analogWrite(motorSpeed4, i);
   
-  if(i>200){i=200;}
+  if(speed>maxSpeed){speed=maxSpeed;}
   
   digitalWrite(motor3,HIGH);
   digitalWrite(motor4,HIGH);
       
-  Serial.println(i);
+  Serial.println(speed);
   lastCommand='s';
   }
   
@@ -121,87 +124,87 @@ void loop() {
   i =i+50;
   if (lastCommand != text) i=50;
   
-  analogWrite(motorSpeed5, i);
-  analogWrite(motorSpeed6, i);
-  analogWrite(motorSpeed7, i);
-  analogWrite(motorSpeed8, i);
-  if(i>200){i=200;}
+  analogWrite(motorSpeed5, speed);
+  analogWrite(motorSpeed6, speed);
+  analogWrite(motorSpeed7, speed);
+  analogWrite(motorSpeed8, speed);
+  if(speed>maxSpeed){speed=maxSpeed;}
   digitalWrite(motor5,HIGH);
   digitalWrite(motor6,LOW);
   digitalWrite(motor7_a,HIGH);
   digitalWrite(motor7_b,LOW) ;
   digitalWrite(motor8_a,HIGH);
   digitalWrite(motor8_b,LOW) ;
-  Serial.println(i);
+  Serial.println(speed);
   lastCommand='e';
   }
 
 
   //the motor is down  
   if(text=='q'){
-  i =i+50;
-  if (lastCommand != text) i=50;
-  analogWrite(motorSpeed5, i);
-  analogWrite(motorSpeed6, i);
-  analogWrite(motorSpeed7, i);
-  analogWrite(motorSpeed8, i);
-  if(i>200){i=200;}
+  speed = speed+ step; 
+  if (lastCommand != text) speed= step;
+  analogWrite(motorSpeed5, speed);
+  analogWrite(motorSpeed6, speed);
+  analogWrite(motorSpeed7, speed);
+  analogWrite(motorSpeed8, speed);
+  if(speed>maxSpeed){speed=maxSpeed;}
   digitalWrite(motor5,LOW);    
   digitalWrite(motor6,HIGH);  
   digitalWrite(motor7_b,HIGH);
   digitalWrite(motor7_a,LOW) ;
   digitalWrite(motor8_b,HIGH);
   digitalWrite(motor8_a,LOW) ;  
-  Serial.println(i);
+  Serial.println(speed);
   lastCommand='q';
   }
 
 
   //the motor is turn left
   if(text=='a'){
-  i =i+50;
-  if (lastCommand != text) i=50;
-  analogWrite(motorSpeed2, i);
-  analogWrite(motorSpeed4, i);
+  speed =speed+step;
+  if (lastCommand != text) speed= step;
+  analogWrite(motorSpeed2, speed);
+  analogWrite(motorSpeed4, speed);
   if(i>200){i=200;}
   digitalWrite(motor2,HIGH);     
   digitalWrite(motor4,HIGH);    
   
      
-  Serial.println(i);
+  Serial.println(speed);
   lastCommand='a';
   }
 
 
   //the motor is turn right
   if(text=='d'){
-  i =i+50;
-  if (lastCommand != text) i=50;
+  speed =speed+step;
+  if (lastCommand != text) speed = step;
   analogWrite(motorSpeed1, i);
   analogWrite(motorSpeed3, i);
-  if(i>200){i=200;}
+  if(speed>maxSpeed){speed=maxSpeed;}
   digitalWrite(motor1,HIGH);     
   digitalWrite(motor3,HIGH);    
   
-  Serial.println(i);
+  Serial.println(speed);
   lastCommand='d';
   }
   //the motor rotate  
 if(text=='r'){
-  i =i+50;
-  if (lastCommand != text) i=50;
-  analogWrite(motorSpeed2, i);
-  analogWrite(motorSpeed3, i);
-  if(i>200){i=200;}
+  speed =speed +step ;
+  if (lastCommand != text) speed=step;
+  analogWrite(motorSpeed2, speed);
+  analogWrite(motorSpeed3, speed);
+  if(speed>maxSpeed){speed=maxSpeed;}
   digitalWrite(motor2,HIGH);   
   digitalWrite(motor3,HIGH);    
   
-  Serial.println(i);
+  Serial.println(speed);
   lastCommand='r';
   }
   
   if(text=='f'){
-  i = 0;
+  speed = 0;
   analogWrite(motorSpeed1, 0);
   analogWrite(motorSpeed2, 0);
  // if(i>200){i=200;}
@@ -215,7 +218,7 @@ if(text=='r'){
   analogWrite(motorSpeed5, 0);
   digitalWrite(motor6,LOW);    
   analogWrite(motorSpeed6,0);   
-  Serial.println(i);
+  Serial.println(speed);
   lastCommand='f';
   }
 }}
