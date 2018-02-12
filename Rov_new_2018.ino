@@ -3,6 +3,8 @@
 byte speed =0;
 
 
+// pin descreption :
+// ---------------------
 byte motor1 = 22;
 byte motorSpeed1 = 2;
 
@@ -101,13 +103,13 @@ void loop() {
 
  //the motor is backward 
  else if(text=='s'){
-  speed =speed+step;
+  speed = speed + step;
   if (lastCommand != text) speed = step;
   
   analogWrite(motorSpeed1, 0);
   analogWrite(motorSpeed2, 0);
-  analogWrite(motorSpeed3, i);
-  analogWrite(motorSpeed4, i);
+  analogWrite(motorSpeed3, speed);
+  analogWrite(motorSpeed4, speed);
   
   if(speed>maxSpeed){speed=maxSpeed;}
   
@@ -121,8 +123,8 @@ void loop() {
 
  //the motor is up 
  else if(text=='e'){
-  i =i+50;
-  if (lastCommand != text) i=50;
+  speed = speed + step;
+  if (lastCommand != text) speed= step;
   
   analogWrite(motorSpeed5, speed);
   analogWrite(motorSpeed6, speed);
@@ -166,7 +168,7 @@ void loop() {
   if (lastCommand != text) speed= step;
   analogWrite(motorSpeed2, speed);
   analogWrite(motorSpeed4, speed);
-  if(i>200){i=200;}
+  if(speed>maxSpeed){speed=maxSpeed;}
   digitalWrite(motor2,HIGH);     
   digitalWrite(motor4,HIGH);    
   
@@ -180,8 +182,8 @@ void loop() {
   if(text=='d'){
   speed =speed+step;
   if (lastCommand != text) speed = step;
-  analogWrite(motorSpeed1, i);
-  analogWrite(motorSpeed3, i);
+  analogWrite(motorSpeed1, speed);
+  analogWrite(motorSpeed3, speed);
   if(speed>maxSpeed){speed=maxSpeed;}
   digitalWrite(motor1,HIGH);     
   digitalWrite(motor3,HIGH);    
@@ -207,7 +209,7 @@ if(text=='r'){
   speed = 0;
   analogWrite(motorSpeed1, 0);
   analogWrite(motorSpeed2, 0);
- // if(i>200){i=200;}
+   
   digitalWrite(motor1,LOW);    //all motors is off(stop) 
   digitalWrite(motor2,LOW);    
   digitalWrite(motor3,LOW);    
