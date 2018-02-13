@@ -1,35 +1,35 @@
 #define maxSpeed 120
 #define step 10 
-byte speed =0;
+byte speed = 0;
 
 
-// pin descreption :
-// ---------------------
-byte motor1 = 22;
-byte motorSpeed1 = 2;
+/* pin descreption :    
+------------------------------ */
+#define motor1        22
+#define motorSpeed1   2
 
-byte motor2 = 23;
-byte motorSpeed2 = 3; 
+#define motor2        23
+#define motorSpeed2   3 
 
-byte motor3 = 24 ;
-byte motorSpeed3 = 4;
+#define motor3        24 
+#define motorSpeed3    4
 
-byte motor4 = 25;
-byte motorSpeed4 = 5;
+#define motor4        25
+#define motorSpeed4    5
 
-byte motor5 = 26;
-byte motorSpeed5 = 6;
+#define motor5        26
+#define motorSpeed5    6
 
-byte motor6 = 27; 
-byte motorSpeed6 = 7;
+#define motor6        27 
+#define motorSpeed6    7
 
-byte motor7_a = 28 ;
-byte motor7_b = 29 ; 
-byte motorSpeed7 = 8 ;  
+#define motor7_a      28 
+#define motor7_b      29  
+#define motorSpeed7    8   
  
-byte motor8_a = 30 ;
-byte motor8_b = 31 ; 
-byte motorSpeed8 = 9 ; 
+#define motor8_a      30  
+#define motor8_b      31  
+#define motorSpeed8   9  
 
 char lastCommand;
 
