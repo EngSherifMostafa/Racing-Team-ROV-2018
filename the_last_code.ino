@@ -304,7 +304,20 @@ if(text=='r'){
   Serial.println("Arm now should be close !");
   lastCommand='x';
  }
- 
+ /* Reset ROV via software :) */
+ if (text == 'z') watchdog_timer_reset();
+   
  }
- 
  }
+
+
+ void watchdog_timer_reset(){ 
+  Serial.println("Arduino will be reset now !! ") ; 
+  delay(1000); 
+  // Clear the reset flag. 
+  MCUSR &= ~(1<<WDRF);
+  WDTCSR |= (1<<WDCE) | (1<<WDE);     // start time sequence 
+  // we set the default watchdog reset time = 16 ms so we prescallers = 0 
+  // Enable interrupt.
+  WDTCSR |= (1<<WDIE);
+  } 
