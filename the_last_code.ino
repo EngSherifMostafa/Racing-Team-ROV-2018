@@ -108,11 +108,10 @@ void loop() {
   digitalWrite(motor2,HIGH);
   digitalWrite(motor7_a,LOW);
   digitalWrite(motor7_b,HIGH);
-      digitalWrite(motor8_a,LOW);
+  digitalWrite(motor8_a,LOW);
   digitalWrite(motor8_b,HIGH);
-  
-     
-  Serial.println(i);
+  Serial.println("PWM = " + i);
+  Serial.println("Motor now should be FORWARD !");
   lastCommand='w';
   }
 
@@ -137,9 +136,8 @@ void loop() {
   digitalWrite(motor7_b,LOW);
       digitalWrite(motor8_a,HIGH);
   digitalWrite(motor8_b,LOW);
-  
-       
-  Serial.println(i);
+  Serial.println("Motor now should be BACKWARD !");     
+  Serial.println("PWM = " + i);
   lastCommand='s';
   }
   
@@ -157,7 +155,8 @@ void loop() {
   digitalWrite(motor6,LOW);  
   digitalWrite(motor3,HIGH);
   digitalWrite(motor4,LOW) ;  
-  Serial.println(i);
+  Serial.println("PWM = " + i);
+  Serial.println("Motor now should be UP !");
   lastCommand='q';
   }
 
@@ -175,7 +174,8 @@ void loop() {
   digitalWrite(motor6,HIGH);  
   digitalWrite(motor3,LOW);
   digitalWrite(motor4,HIGH) ;  
-  Serial.println(i);
+  Serial.println("PWM = " + i);
+  Serial.println("Motor now should be DOWN !");
   lastCommand='e';
   }
 
@@ -198,8 +198,8 @@ void loop() {
   digitalWrite(motor7_b,HIGH);   
   digitalWrite(motor8_a,LOW);
   digitalWrite(motor8_b,HIGH);
-     
-  Serial.println(i);
+  Serial.println("Motor now should be LEFT !");   
+  Serial.println("PWM = " + i);
   lastCommand='a';
   }
 
@@ -223,7 +223,8 @@ void loop() {
   digitalWrite(motor7_b,LOW);   
   digitalWrite(motor8_a,HIGH);
   digitalWrite(motor8_b,LOW);
-  Serial.println(i);
+  Serial.println("PWM = " + i);
+  Serial.println("Motor now should be RIGHT !");
   lastCommand='d';
   }
   //the motor rotate  
@@ -244,33 +245,13 @@ if(text=='r'){
   digitalWrite(motor7_b,LOW);   
   digitalWrite(motor8_a,HIGH);
   digitalWrite(motor8_b,LOW);
-  Serial.println(i);
+  Serial.println("PWM = " + i);
+  Serial.println("Motor now should be rotate !");
   lastCommand='r';
   }
 
 
- // the motor rotate
-/*
- * if(text=='t'){
-  i =i+50;
-  if (lastCommand != text) i=50;
-  analogWrite(motorSpeed1, i);
-  analogWrite(motorSpeed2, i);
-  // revers 
-  analogWrite(motorSpeed3, i);
-  analogWrite(motorSpeed4, i);
-  
-  if(i>max_speed){i=max_speed;}
-
-  digitalWrite(motor1,LOW);   
-  digitalWrite(motor2,HIGH);
-  digitalWrite(motor3,HIGH);   
-  digitalWrite(motor4,LOW);
-
-  Serial.println(i);
-  lastCommand='t';
-  }
-*/  
+   
   if(text=='f'){
   i = 0;
   analogWrite(motorSpeed1, 0);
@@ -292,31 +273,38 @@ if(text=='r'){
   digitalWrite(motor8_a,LOW);    
   digitalWrite(motor8_b,LOW);    
   analogWrite(motorSpeed8,0);   
-  Serial.println(i);
+  Serial.println("Motor should be stop now !");
+  Serial.println("speed = " + i);
   lastCommand='f';
   }
-  if(text=='t'){
-  i =i+50;
-  if (lastCommand != text) i=50;
-  analogWrite(motorSpeed9, i);
   
-  if(i>max_speed){i=max_speed;}
-  
-  digitalWrite(motor9_b,HIGH);
-  digitalWrite(motor9_a,LOW) ;  
-  Serial.println(i);
-  lastCommand='t';
-}
  if(text=='y'){
-  i =i+50;
-  if (lastCommand != text) i=50;
-  analogWrite(motorSpeed9, i);
-  
-  if(i>max_speed){i=max_speed;}
-  
+  i = 40 ;
+  analogWrite(motorSpeed9, 40);
   digitalWrite(motor9_a,HIGH);
   digitalWrite(motor9_b,LOW) ;  
-  Serial.println(i);
+  delay(500);
+  analogWrite(motorSpeed9, 0);
+  digitalWrite(motor9_a,LOW);
+  digitalWrite(motor9_b,LOW) ;  
+  Serial.println("PWM = " + i);
+  Serial.println("Arm now should be open !");
   lastCommand='y';
- }}}
-
+ }
+   if(text=='x'){
+  i = 40 ;
+  analogWrite(motorSpeed9, 40);
+  digitalWrite(motor9_a,LOW);
+  digitalWrite(motor9_b,HIGH) ;  
+  delay(500);
+  analogWrite(motorSpeed9, 0);
+  digitalWrite(motor9_a,LOW);
+  digitalWrite(motor9_b,LOW) ;  
+  Serial.println("PWM = " + i);
+  Serial.println("Arm now should be close !");
+  lastCommand='x';
+ }
+ 
+ }
+ 
+ }
