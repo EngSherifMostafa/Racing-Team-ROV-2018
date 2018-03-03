@@ -1,5 +1,4 @@
-byte i=0;
-
+byte Speed = 0;
 #define max_speed 170
 
 
@@ -36,7 +35,6 @@ byte motor9_b=33;
  
 
 char lastCommand;
-
 void setup() {
       
  Serial.begin(115200);
@@ -89,155 +87,154 @@ void setup() {
 
 void loop() {
   if(Serial.available()>0){
-  char text=Serial.read();
+  char text = Serial.read();
   
   //the motor is forward  
   if(text=='w'){
-  i =i+50;
-  if (lastCommand != text) i=50;
-  analogWrite(motorSpeed1, i);
-  analogWrite(motorSpeed2, i);
+  Speed=Speed+50;
+  if (lastCommand != text) Speed = 50;
+  analogWrite(motorSpeed1, Speed);
+  analogWrite(motorSpeed2, Speed);
   // revers 
-  analogWrite(motorSpeed7, i);
-  analogWrite(motorSpeed8, i);
-  
-  
-  if(i>max_speed){i=max_speed;}
-  
+  analogWrite(motorSpeed3, Speed);
+  analogWrite(motorSpeed5, Speed);
+  if(Speed>max_speed){Speed=max_speed;}
   digitalWrite(motor1,HIGH);   
   digitalWrite(motor2,HIGH);
-  digitalWrite(motor7_a,LOW);
-  digitalWrite(motor7_b,HIGH);
-  digitalWrite(motor8_a,LOW);
-  digitalWrite(motor8_b,HIGH);
-  Serial.println("PWM = " + i);
-  Serial.println("Motor now should be FORWARD !");
+  digitalWrite(motor3,LOW);
+  digitalWrite(motor5,HIGH);
+  Serial.println("FORWARD !");
+  Serial.print("PWM = ");
+  Serial.println(Speed);
   lastCommand='w';
   }
 
 
  //the motor is backward 
  else if(text=='s'){
-  i =i+50;
-  if (lastCommand != text) i=50;
+ Speed = Speed + 50;
+  if (lastCommand != text) Speed=50;
   
-  analogWrite(motorSpeed1, i);
-  analogWrite(motorSpeed2, i);
+  analogWrite(motorSpeed1, Speed);
+  analogWrite(motorSpeed2, Speed);
   // revers 
-  analogWrite(motorSpeed7, i);
-  analogWrite(motorSpeed8, i);
+  analogWrite(motorSpeed3, Speed);
+  analogWrite(motorSpeed5, Speed);
   
-  if(i>max_speed){i=max_speed;}
+  if(Speed>max_speed){Speed=max_speed;}
   
   
   digitalWrite(motor1,HIGH);   
   digitalWrite(motor2,LOW);
-  digitalWrite(motor7_a,HIGH);
-  digitalWrite(motor7_b,LOW);
-      digitalWrite(motor8_a,HIGH);
-  digitalWrite(motor8_b,LOW);
-  Serial.println("Motor now should be BACKWARD !");     
-  Serial.println("PWM = " + i);
+  digitalWrite(motor3,HIGH);
+  digitalWrite(motor5,LOW);
+  Serial.println("BACKWARD !");     
+  Serial.print("PWM = ");
+  Serial.println(Speed);
   lastCommand='s';
   }
   
 
  //the motor is up 
  else if(text=='q'){
-  i =i+50;
-  if (lastCommand != text) i=50;
-  analogWrite(motorSpeed5, i);
-  analogWrite(motorSpeed6, i);
-  analogWrite(motorSpeed3, i);
-  analogWrite(motorSpeed4, i);
-  if(i>max_speed){i=max_speed;}
-  digitalWrite(motor5,HIGH);    
-  digitalWrite(motor6,LOW);  
+ Speed = Speed + 50 ; 
+  if (lastCommand != text) Speed = 50 ;
+  analogWrite(motorSpeed1, Speed);
+  analogWrite(motorSpeed2, Speed);
+  analogWrite(motorSpeed3, Speed);
+  analogWrite(motorSpeed5, Speed);
+  if(Speed>max_speed){Speed=max_speed;}
+  digitalWrite(motor1,HIGH);    
+  digitalWrite(motor2,HIGH);  
   digitalWrite(motor3,HIGH);
-  digitalWrite(motor4,LOW) ;  
-  Serial.println("PWM = " + i);
-  Serial.println("Motor now should be UP !");
+  digitalWrite(motor5,LOW) ;  
+  Serial.println("UP !");
+  Serial.print("PWM = ");
+  Serial.println(Speed);
   lastCommand='q';
   }
 
 
   //the motor is down  
   if(text=='e'){
-  i =i+50;
-  if (lastCommand != text) i=50;
-  analogWrite(motorSpeed5, i);
-  analogWrite(motorSpeed6, i);
-  analogWrite(motorSpeed3, i);
-  analogWrite(motorSpeed4, i);
-  if(i>max_speed){i=max_speed;}
-  digitalWrite(motor5,LOW);    
-  digitalWrite(motor6,HIGH);  
+  Speed = Speed+50;
+  if (lastCommand != text) Speed = 50;
+  analogWrite(motorSpeed1, Speed);
+  analogWrite(motorSpeed2, Speed);
+  analogWrite(motorSpeed3, Speed);
+  analogWrite(motorSpeed5, Speed);
+  if(Speed>max_speed){Speed=max_speed;}
+  digitalWrite(motor1,LOW);    
+  digitalWrite(motor2,LOW);  
   digitalWrite(motor3,LOW);
-  digitalWrite(motor4,HIGH) ;  
-  Serial.println("PWM = " + i);
-  Serial.println("Motor now should be DOWN !");
+  digitalWrite(motor5,HIGH) ;  
+  Serial.println("DOWN !");
+  Serial.print("PWM = ");
+  Serial.println(Speed);
   lastCommand='e';
   }
 
 
   //the motor is turn left
-  if(text=='a'){
-  i =i+50;
-  if (lastCommand != text) i=50;
-  analogWrite(motorSpeed1, i);
-  analogWrite(motorSpeed2, i);
+  if(text == 'a'){
+  Speed = Speed +50;
+  if (lastCommand != text) Speed=50;
+  analogWrite(motorSpeed4, Speed);
+  analogWrite(motorSpeed6, Speed);
   // revers 
-  analogWrite(motorSpeed7, i);
-  analogWrite(motorSpeed8, i);
+  analogWrite(motorSpeed7, Speed);
+  analogWrite(motorSpeed8, Speed);
   
-  if(i>max_speed){i=max_speed;}
+  if(Speed>max_speed){Speed=max_speed;}
 
-  digitalWrite(motor1,LOW);   
-  digitalWrite(motor2,LOW);
+  digitalWrite(motor4,LOW);   
+  digitalWrite(motor6,LOW);
   digitalWrite(motor7_a,LOW);   
   digitalWrite(motor7_b,HIGH);   
-  digitalWrite(motor8_a,LOW);
-  digitalWrite(motor8_b,HIGH);
-  Serial.println("Motor now should be LEFT !");   
-  Serial.println("PWM = " + i);
+  digitalWrite(motor8_a,HIGH);
+  digitalWrite(motor8_b,LOW);
+  Serial.println("LEFT !");
+  Serial.print("PWM = ");
+  Serial.println(Speed);   
   lastCommand='a';
   }
 
 
   //the motor is turn right
   if(text=='d'){
-  i =i+50;
-  if (lastCommand != text) i=50;
+  Speed = Speed + 50;
+  if (lastCommand != text) Speed = 50;
   
-  analogWrite(motorSpeed1, i);
-  analogWrite(motorSpeed2, i);
+  analogWrite(motorSpeed4, Speed);
+  analogWrite(motorSpeed6, Speed);
   // revers 
-  analogWrite(motorSpeed7, i);
-  analogWrite(motorSpeed8, i);
+  analogWrite(motorSpeed7, Speed);
+  analogWrite(motorSpeed8, Speed);
   
-  if(i>max_speed){i=max_speed;}
+  if(Speed>max_speed){Speed=max_speed;}
 
-  digitalWrite(motor1,HIGH);   
-  digitalWrite(motor2,HIGH);
+  digitalWrite(motor4,HIGH);   
+  digitalWrite(motor6,HIGH);
   digitalWrite(motor7_a,HIGH);   
   digitalWrite(motor7_b,LOW);   
-  digitalWrite(motor8_a,HIGH);
-  digitalWrite(motor8_b,LOW);
-  Serial.println("PWM = " + i);
-  Serial.println("Motor now should be RIGHT !");
+  digitalWrite(motor8_a,LOW);
+  digitalWrite(motor8_b,HIGH);
+  Serial.println("RIGHT !");
+  Serial.print("PWM = ");
+  Serial.println(Speed);  
   lastCommand='d';
   }
   //the motor rotate  
-if(text=='r'){
-  i =i+50;
-  if (lastCommand != text) i=50;
-  analogWrite(motorSpeed1, i);
-  analogWrite(motorSpeed2, i);
+  if(text=='r'){
+  Speed= Speed + 50;
+  if (lastCommand != text) Speed=50;
+  analogWrite(motorSpeed1, Speed);
+  analogWrite(motorSpeed2, Speed);
   // revers 
-  analogWrite(motorSpeed7, i);
-  analogWrite(motorSpeed8, i);
+  analogWrite(motorSpeed7, Speed);
+  analogWrite(motorSpeed8, Speed);
   
-  if(i>max_speed){i=max_speed;}
+  if(Speed>max_speed){Speed=max_speed;}
 
   digitalWrite(motor1,HIGH);   
   digitalWrite(motor2,HIGH);
@@ -245,18 +242,19 @@ if(text=='r'){
   digitalWrite(motor7_b,LOW);   
   digitalWrite(motor8_a,HIGH);
   digitalWrite(motor8_b,LOW);
-  Serial.println("PWM = " + i);
-  Serial.println("Motor now should be rotate !");
+  Serial.println("Rotate !");
+  Serial.print("PWM = ");
+  Serial.println(Speed);
   lastCommand='r';
   }
 
 
    
   if(text=='f'){
-  i = 0;
+  Speed = 0 ; 
   analogWrite(motorSpeed1, 0);
   analogWrite(motorSpeed2, 0);
- // if(i>200){i=200;}
+ 
   digitalWrite(motor1,LOW);    //all motors is off(stop) 
   digitalWrite(motor2,LOW);    
   digitalWrite(motor3,LOW);    
@@ -273,35 +271,38 @@ if(text=='r'){
   digitalWrite(motor8_a,LOW);    
   digitalWrite(motor8_b,LOW);    
   analogWrite(motorSpeed8,0);   
-  Serial.println("Motor should be stop now !");
-  Serial.println("speed = " + i);
+  Serial.println("STOP");
+ 
   lastCommand='f';
   }
   
  if(text=='y'){
-  i = 40 ;
-  analogWrite(motorSpeed9, 40);
+  Speed = 80 ;
+  analogWrite(motorSpeed9, Speed);
   digitalWrite(motor9_a,HIGH);
   digitalWrite(motor9_b,LOW) ;  
-  delay(500);
+  delay(750);
   analogWrite(motorSpeed9, 0);
   digitalWrite(motor9_a,LOW);
   digitalWrite(motor9_b,LOW) ;  
-  Serial.println("PWM = " + i);
-  Serial.println("Arm now should be open !");
+  Serial.println("Arm OPEN !");
+  Serial.print("PWM = ");
+  Serial.println(Speed);
   lastCommand='y';
  }
    if(text=='x'){
-  i = 40 ;
-  analogWrite(motorSpeed9, 40);
+  Speed = 80 ;
+  analogWrite(motorSpeed9, Speed);
   digitalWrite(motor9_a,LOW);
   digitalWrite(motor9_b,HIGH) ;  
-  delay(500);
+  delay(750);
   analogWrite(motorSpeed9, 0);
   digitalWrite(motor9_a,LOW);
   digitalWrite(motor9_b,LOW) ;  
-  Serial.println("PWM = " + i);
-  Serial.println("Arm now should be close !");
+  
+  Serial.println("Arm close ");
+  Serial.print("PWM = ");
+  Serial.println(Speed);
   lastCommand='x';
  }
  /* Reset ROV via software :) */
@@ -312,7 +313,7 @@ if(text=='r'){
 
 
  void watchdog_timer_reset(){ 
-  Serial.println("Arduino will be reset now !! ") ; 
+  Serial.println("reset now !! ") ; 
   delay(1000); 
   // Clear the reset flag. 
   MCUSR &= ~(1<<WDRF);
@@ -320,4 +321,4 @@ if(text=='r'){
   // we set the default watchdog reset time = 16 ms so we prescallers = 0 
   // Enable interrupt.
   WDTCSR |= (1<<WDIE);
-  } 
+  }
