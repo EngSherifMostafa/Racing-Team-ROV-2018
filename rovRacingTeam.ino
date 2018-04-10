@@ -1,4 +1,10 @@
-
+/* 
+ ****************************************
+ * SCU RACING TEAM ARDUINO MEGA CODE    * 
+ * using UART protocol                  *
+ * By  : Electrical team                *
+ ****************************************
+ */
 int i=0;
 
 int motor1=13;
@@ -19,8 +25,11 @@ int motorSpeed6=3;
 char lastCommand;
 
 void setup() {
-  Serial.begin(9600);
-  
+ Serial.begin(115200);
+ Serial.println("I am SCU Racing ROV ") ;
+ Serial.println("Pilot Plz control my movements Accurately ") ;   
+ Serial.println("********************************************") ;
+ Serial.println() ;  
  pinMode(motor1,OUTPUT);  
  digitalWrite(motor1,LOW); 
  pinMode(motorSpeed1,OUTPUT);  
