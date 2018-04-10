@@ -1,7 +1,9 @@
 /* 
  ****************************************
  * SCU RACING TEAM ARDUINO MEGA CODE    * 
- * using UART protocol                  *
+ * to control Movements of 9 blidges    *
+ * via UART protocol connecting to Usb  * 
+ * to UART converter then PC            *
  * By  : Electrical team                *
  ****************************************
  */
